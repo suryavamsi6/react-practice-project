@@ -1,0 +1,19 @@
+.output-field-card {
+    background-color: white;
+    padding: 0.5em;
+}
+
+.output-field-div {
+    margin: auto;
+    width: 100%;
+    padding-top: 1em;
+}
+
+.output-field-card p {
+    margin: 1rem;
+    padding: 0.5rem;
+    width: 90%;
+    border: 1px grey solid;
+    border-radius: 0.25rem;
+
+}

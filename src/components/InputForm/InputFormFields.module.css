@@ -1,0 +1,15 @@
+.form-card{
+    background-color: white;
+    padding: 1em;
+}
+
+.form-card input {
+    margin: 0.5em;
+    width: 90%;
+}
+.form-card label{
+    font-weight: bold;
+    margin: 0.5em;
+    display: block;
+
+}
