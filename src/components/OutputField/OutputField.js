@@ -4,9 +4,11 @@ import Card from "../UI/Card";
 const OutputField = (props) => {
   return (
     <div className={styles["output-field-div"]}>
-      <Card className={styles["output-field-card"]}>
-        <p>Name (Age)</p>
-      </Card>
+      {props.data.map((userData) => (
+        <Card key={userData.id} className={styles["output-field-card"]}>
+          {userData.name} ({userData.age})
+        </Card>
+      ))}
     </div>
   );
 };
