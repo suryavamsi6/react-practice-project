@@ -17,7 +17,7 @@ const InputFormFields = (props) => {
       enteredUserInput.enteredName.trim().length === 0 ||
       enteredUserInput.enteredAge.trim().length === 0
     ) {
-      props.empty(true);
+      setIsEmpty(true);
       return;
     }
     const enteredUserData = {
@@ -26,7 +26,7 @@ const InputFormFields = (props) => {
       id: Math.random().toString(),
     };
 
-    props.empty(false);
+    setIsEmpty(false);
     props.onSaveData(enteredUserData);
     setEnteredUserInput((prevState) => {
       return {
@@ -54,9 +54,11 @@ const InputFormFields = (props) => {
       };
     });
   };
+  const [isEmpty, setIsEmpty] = useState(false);
 
   return (
     <div>
+      <Modal className={`${!isEmpty && styles["empty"]}`} />
       <Card className={styles["form-card"]}>
         <form onSubmit={formSubmitHandler}>
           <label>Username</label>

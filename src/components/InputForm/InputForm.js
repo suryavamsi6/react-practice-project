@@ -14,8 +14,6 @@ const DUMMY_DATA = [
 ];
 
 const InputForm = (props) => {
-  const [isEmpty, setIsEmpty] = useState(false);
-
   const [inputData, setInputData] = useState(DUMMY_DATA);
 
   const saveDataHandler = (enteredUserData) => {
@@ -24,13 +22,9 @@ const InputForm = (props) => {
     });
   };
 
-  const emptyHandler = (emptyValue) => {
-    setIsEmpty(emptyValue);
-  };
   return (
     <div className={styles["form-div"]}>
-      <Modal empty={isEmpty} />
-      <InputFormFields onSaveData={saveDataHandler} empty={emptyHandler} />
+      <InputFormFields onSaveData={saveDataHandler} />
       <OutputField data={inputData} />
     </div>
   );
