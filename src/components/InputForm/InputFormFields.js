@@ -10,6 +10,7 @@ const InputFormFields = (props) => {
     enteredAge: "",
   });
 
+  const [error, setError] = useState();
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -17,7 +18,25 @@ const InputFormFields = (props) => {
       enteredUserInput.enteredName.trim().length === 0 ||
       enteredUserInput.enteredAge.trim().length === 0
     ) {
-      setIsEmpty(true);
+      setError((prevMessage) => {
+        return {
+          ...prevMessage,
+          title: "No Data",
+          message: "Enter a username and Age!!",
+        };
+      });
+
+      return;
+    }
+
+    if (enteredUserInput.enteredAge < 18) {
+      setError((prevMessage) => {
+        return {
+          ...prevMessage,
+          title: "Invalid Age",
+          message: "Age should be >= 18",
+        };
+      });
       return;
     }
     const enteredUserData = {
@@ -26,8 +45,8 @@ const InputFormFields = (props) => {
       id: Math.random().toString(),
     };
 
-    setIsEmpty(false);
     props.onSaveData(enteredUserData);
+    setError(null);
     setEnteredUserInput((prevState) => {
       return {
         ...prevState,
@@ -54,11 +73,20 @@ const InputFormFields = (props) => {
       };
     });
   };
-  const [isEmpty, setIsEmpty] = useState(false);
+
+  const cancelHandler = () => {
+    setError(null);
+  };
 
   return (
     <div>
-      <Modal className={`${!isEmpty && styles["empty"]}`} />
+      {error && (
+        <Modal
+          message={error.message}
+          title={error.title}
+          cancel={cancelHandler}
+        />
+      )}
       <Card className={styles["form-card"]}>
         <form onSubmit={formSubmitHandler}>
           <label>Username</label>
